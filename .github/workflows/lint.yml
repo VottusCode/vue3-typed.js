@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   lint:
-    name: Run ESLint & Prettier
+    name: ESLint & Prettier
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,9 +17,9 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Install dependencies
-        run: yarn --frozen-lockfile
+      - name: Install Prettier & ESLint
+        run: sudo yarn global add prettier eslint
       - name: Run Prettier
-        run: yarn prettier --check .
+        run: prettier --check .
       - name: Run ESLint
-        run: yarn eslint
+        run: eslint

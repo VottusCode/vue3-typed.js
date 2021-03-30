@@ -21,8 +21,8 @@ yarn add vue3-typed.js
 You can either add the component globally:
 
 ```ts
-import { createApp } from "vue";
-import { plugin as vueTyped } from "vue3-typed.js";
+import { createApp } from 'vue';
+import { plugin as vueTyped } from 'vue3-typed.js';
 
 const app = createApp();
 
@@ -81,15 +81,15 @@ Example usage:
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
-  import { VueTyped, TypedRef } from "vue3-typed.js";
+  import { defineComponent } from 'vue';
+  import { VueTyped, TypedRef } from 'vue3-typed.js';
 
   export default defineComponent({
     setup() {
       // type TypedRef = vue.Ref<Typed>
       const onTypingComplete = (ref: TypedRef) => {
         ref.value; // Typed.js
-        console.log("typing complete");
+        console.log('typing complete');
       };
 
       return {

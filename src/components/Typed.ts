@@ -1,21 +1,20 @@
-import Typed, { TypedOptions } from "typed.js";
-import { defineComponent, onMounted, onUnmounted, PropType, ref } from "vue";
+import Typed, { TypedOptions } from 'typed.js';
+import { defineComponent, onMounted, onUnmounted, PropType, ref } from 'vue';
 
 const emits = [
-  "onComplete",
-  "preStringTyped",
-  "onStringTyped",
-  "onLastStringBackspaced",
-  "onTypingPaused",
-  "onTypingResumed",
-  "onReset",
-  "onStop",
-  "onStart",
-  "onDestroy",
+  'onComplete',
+  'preStringTyped',
+  'onStringTyped',
+  'onLastStringBackspaced',
+  'onTypingPaused',
+  'onTypingResumed',
+  'onReset',
+  'onStop',
+  'onStart',
+  'onDestroy',
 ];
 
-const createTyped = (config: TypedOptions, el: Element) =>
-  new Typed(el, config);
+const createTyped = (config: TypedOptions, el: Element) => new Typed(el, config);
 
 const VueTyped = defineComponent({
   template: `
@@ -28,8 +27,8 @@ const VueTyped = defineComponent({
     strings: {
       type: Array as PropType<string[]>,
       required: false,
-      default: () => ["Hello World!"],
-      validator: (arr: string[]) => arr.every((e) => typeof e === "string"),
+      default: () => ['Hello World!'],
+      validator: (arr: string[]) => arr.every(e => typeof e === 'string'),
     },
     stringsElement: {
       type: String,
@@ -74,7 +73,7 @@ const VueTyped = defineComponent({
     fadeOutClass: {
       type: String,
       required: false,
-      default: "typed-fade-out",
+      default: 'typed-fade-out',
     },
     fadeOutDelay: {
       type: Number,
@@ -99,7 +98,7 @@ const VueTyped = defineComponent({
     cursorChar: {
       type: String,
       required: false,
-      default: "|",
+      default: '|',
     },
     autoInsertCss: {
       type: Boolean,
@@ -119,7 +118,7 @@ const VueTyped = defineComponent({
     contentType: {
       type: String,
       required: false,
-      default: "html",
+      default: 'html',
     },
   },
   setup(props, { emit }) {
@@ -128,15 +127,15 @@ const VueTyped = defineComponent({
 
     onMounted(() => {
       if (typedWrapper.value) {
-        let el: HTMLElement | null = typedWrapper.value.querySelector(".typed");
+        let el: HTMLElement | null = typedWrapper.value.querySelector('.typed');
         if (!el) {
-          el = document.createElement("span");
-          el.classList.add("typed");
+          el = document.createElement('span');
+          el.classList.add('typed');
           typedWrapper.value.append(el);
         }
 
         const _config: Partial<TypedOptions> & { [key: string]: any } = props;
-        emits.forEach((e) => (_config[e] = () => emit(e, typed)));
+        emits.forEach(e => (_config[e] = () => emit(e, typed)));
 
         typed.value = createTyped(_config, el);
       }
