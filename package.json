@@ -5,6 +5,7 @@
     "name": "Filip Vottus",
     "email": "vottus@vott.us"
   },
+  "version": "1.0.0-pre",
   "main": "dist/vue3-typed.js",
   "unpkg": "dist/vue3-typed.min.js",
   "css": "dist/vue3-typed.css",
@@ -22,9 +23,12 @@
   "repository": "https://github.com/VottusCode/vue3-typed.js",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env NODE_ENV=development rollup -c",
+    "build": "rollup -c",
+    "build:dev": "NODE_ENV=development yarn build --watch",
+    "build:prod": "NODE_ENV=production yarn build",
     "lint": "eslint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
